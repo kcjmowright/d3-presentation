@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>D3 JS - KCJS Presentation</title>
+  <meta name="viewport" content="width=1024">
+  <link href='https://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="styles/coderdeck-core.min.css" type="text/css">
+  <link rel="stylesheet" id='style-theme-link' href="styles/coderdeck.css" type="text/css">
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/modernizr.js"></script>
+</head>
+<body class="deck-container">
+
+<script type='text/coderdeck' id='coderdeck-default'>
+  <html>
+    <head>
+      <style>
+        svg {
+          top: 0px;
+          left: 0px;
+          width: 500px;
+          height: 500px;
+          position: absolute;
+        }
+      </style>
+      <script src="lib/d3.min.js">SCRIPTEND
+      <script src="lib/jquery.min.js">SCRIPTEND
+    </head>
+    <body>
+     CODE
+    </body>
+  </html>
+</script>
+
+<script type="text/coderdeck" id="svg-template">
+  <html>
+    <title>test</title>
+    <style>
+      CODE
+    </style>
+    <body>
+      <svg x="0" y="0" width="500" height="500">
+      </svg>
+    </body>
+  </html>
+</script>
+
+<article class="slide slide-subhead">
+  <h1>D3</h1>
+  <h2>D3 is Data Drive Documents - A way to create data visualizations.</h2>
+</article>
+
+<article class="slide slide-list">
+  <h2>SVG</h2>
+
+  <h3>Shapes</h3>
+  <p>
+    SVG coordinate system  0,0 in upper left, basically the y or vertical is flipped compared to the traditional mathematical cartesian coordinate system.<br />
+    Many attributes also style attributes, best practice is to use CSS.
+    <ul>
+      <li>Rectangles - &lt;rect x="0" y="0" width="100" height="200" /&gt;</li>
+      <li>Circles - &lt;circle cx="100" cy="100" r="100" /&gt;</li>
+      <li>Ellipsis - &lt;ellipse cx="100" cy="100" rh="100" rw="100" /&gt;</li>
+      <li>Path - &lt;path d="..." /&gt;</li>
+      <li>Grouping - &lt;g&gt; ... &lt;/g&gt;</li>
+      <li>Use - &lt;use /&gt;</li>
+    </ul>
+  </p>
+
+  <h3>Filters</h3>
+  <p>
+    <ul>
+      <li>&lt;feBlend&gt; - filter for combining images</li>
+      <li>&lt;feColorMatrix&gt; - filter for color transforms</li>
+      <li>&lt;feGaussianBlur&gt;</li>
+      <li>&lt;feImage&gt;</li>
+      <li>&lt;feMerge&gt;</li>
+      <li>&lt;feOffset&gt; - filter for drop shadows</li>
+      <li>etc...</li>
+    </ul>
+  </p>
+
+  <h3>Gradients</h3>
+  <p>
+    <ul>
+      <li>Linear</li>
+      <li>Radial</li>
+    </ul>
+  </p>
+</article>
+
+<article class="slide slide-list">
+  <h2>Rectangle</h2>
+
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="svg-rect-sample">
+      <rect x="0" y="0"
+            width="50" height="100"
+            style="fill: #FF0000"/>
+    </svg>
+    <script>
+      var rect = d3.select('svg.svg-rect-sample')
+        .append('rect');
+      rect.attr({
+        x: 100,
+        y: 0,
+        width: 50,
+        height: 100,
+        fill: '#000'
+      });
+    </script>
+  </textarea>
+</article>
+
+<article class="slide slide-list">
+  <h2>Circle</h2>
+
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="svg-circle-sample">
+      <circle cx="50" cy="50"
+              r="50"
+              style="fill: #FF0000"/>
+    </svg>
+    <script>
+      var circle = d3.select('svg.svg-circle-sample')
+        .append('circle');
+
+      circle.attr({
+        cx: 200,
+        cy: 50,
+        r: 50,
+        fill: '#000'
+      });
+    </script>
+  </textarea>
+</article>
+
+<article class="slide slide-list">
+  <h2>Ellipse</h2>
+
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="svg-ellipse-sample">
+      <ellipse cx="100" cy="100"
+              rx="100" ry="50"
+              style="fill: #FF0000"/>
+    </svg>
+    <script>
+      var ellipse = d3.select('svg.svg-ellipse-sample')
+        .append('ellipse');
+      ellipse.attr({
+        cx: 300,
+        cy: 300,
+        rx: 50,
+        ry: 100,
+        fill: '#000'
+      });
+    </script>
+  </textarea>
+</article>
+
+<article class="slide slide-list">
+
+  <h2>D3 Fundamentals</h2>
+
+  <h3>Basics</h3>
+  <ul>
+    <li>Declarative style.  Eliminates loops. </li>
+    <li>Function chaining.</li>
+    <li>Multi-value map in a single API call.</li>
+  </ul>
+
+  <h3>Selections</h3>
+  <p>Supports all CSS operators.  Creates jQuery like selection.</p>
+  <ul>
+    <li>select - Select the first match.</li>
+    <li>selectAll - Select all matches.</li>
+  </ul>
+
+  <h3>DOM Manipulation</h3>
+  <ul>
+    <li>append - Appends an element as the last child into the last element in the chain.</li>
+    <li>insert - Inserts an element as the first child into the last element in the chain.</li>
+    <li>remove - Removes a selection(s)</li>
+    <li>attr - Modifies or accesses attributes.</li>
+    <li>style - Apply style to a selection.  Best practice is to use CSS stylesheets.</li>
+    <li>classed - Add or remove a CSS class.</li>
+  </ul>
+
+</article>
+
+<article class="slide slide-list">
+  <h2>Path and Line Generator</h2>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="svg-path-sample">
+      <path d="M 50 50 l 100 25 l 150 100 l 200 300"
+        style="stroke: #FF0000; fill: none"/>
+    </svg>
+    <script>
+      var data = [150, 125, 200, 400];
+      var width = 500;
+      var height = 500;
+      var svg = d3.select('.svg-path-sample')
+        .append('g')
+        .attr('transform', 'translate(0, 0) scale(1)');
+      // Ordinal scale - doing things in order.
+      var x = d3.scale.ordinal()
+        // domain (array of min max)
+        .domain(d3.range(data.length))
+        // output range with padding.
+        .rangeBands([15, width], 0.5);
+      var y = d3.scale.linear()
+        // domain (array of min max)
+        .domain(d3.extent(data))
+        // output range, an array of values to return.
+        .range([0, height]);
+      // Line generator.
+      var line = d3.svg.line()
+        .x(function(d, i) { return x(i); })
+        .y(function(d) { return y(d); });
+      svg.append('path')
+        .attr('d', line(data))
+        .style({
+          fill: 'none',
+          stroke: '#000'
+        });
+    </script>
+  </textarea>
+</article>
+
+<article class="slide slide-list">
+
+  <h2>Joining Data and DOM</h2>
+
+  <ul><li>data - Joins the specified array of data with the current selection.</li></ul>
+  <pre>var circle = svg.selectAll("circle").data(data);</pre>
+  <ul>
+    <li>enter - Data without elements.</li>
+    <li><em>Update</em> - Data with existing elements.</li>
+    <li>exit - Elements without data.</li>
+  </ul>
+  <svg width="350" height="220">
+    <g transform="translate(10,10)">
+      <circle cx="100" cy="100"
+              r="100"
+              style="fill: none; stroke: #000"/>
+      <circle cx="200" cy="100"
+              r="100"
+              style="fill: none; stroke: #F00"/>
+      <text x="25" y="25">Data</text>
+      <text x="25" y="100">Enter</text>
+      <text x="125" y="100">Update</text>
+      <text x="250" y="100">Exit</text>
+      <text x="250" y="25">DOM</text>
+    </g>
+  </svg>
+  <pre>circle.enter().append("circle");
+circle.exit().remove();</pre>
+  <p>See also <a href="http://bost.ocks.org/mike/join/">Thinking with Joins</a></p>
+
+</article>
+
+<article class="slide slide-list">
+
+  <h2>Scatter Plot</h2>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="scatter-plot"></svg>
+    <script>
+      var height = 500;
+      var width = 500;
+      var svg = d3.select("svg.scatter-plot");
+      var data = [ 301, 20, 30, 40, 14, 7, 80, 73, 55, 93, 234, 2340, 303];
+
+      data.sort(function(a,b) {
+        return a-b;
+      });
+
+      var scale = d3.scale.linear()
+        .domain(d3.extent(data))
+        .range([0, height]);
+      var g = svg.append('g')
+        .attr({
+          transform: 'translate(113,17) scale(0.724598784)'
+        });
+      var circles = g.selectAll('circle')
+        .data(data);
+
+      circles.enter()
+        .append('circle')
+        .attr({
+          cx: function(d, i) {
+            return i * (width/data.length);
+          },
+          cy: function(d) {
+            return height - scale(d);
+          },
+          r: 10,
+          fill: '#2da0fe'
+        })
+        .on('click', function(d) {
+          d3.select(this).attr('fill', function(){
+            return '#ff5500';
+          });
+        });
+      circles.exit().remove();
+    </script>
+  </textarea>
+
+</article>
+
+<article class="slide slide-list">
+
+  <h2>Data Sources</h2>
+
+  <ul>
+    <li>json</li>
+    <li>csv</li>
+    <li>tsv</li>
+  </ul>
+
+  <h3>Public Data Sources</h3>
+  <ul>
+    <li>census.gov</li>
+    <li>data.gov</li>
+    <li>dev.twitter.com</li>
+    <li>https://www.reddit.com/dev/api</li>
+    <li>github</li>
+    <li>bitcoin, coinbase</li>
+  </ul>
+</article>
+
+<article class="slide slide-list">
+  <h2>Bar Chart</h2>
+  <p>Offset y by height, otherwise bars are upside down</p>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="bar-chart"></svg>
+    <script>
+      d3.json('data/bar.json', function(error, res) {
+        var width = 500;
+        var height = 500;
+        var svg = d3.select('svg.bar-chart');
+        var data = res.data;
+        var max = d3.max(data);
+        var xScale = d3.scale.ordinal()
+          .domain(d3.range(data.length))
+          .rangeBands([0, width], 0.25);
+        var yScale = d3.scale.linear()
+          .domain([0, max])
+          .range([0, height]);
+        var g = svg.append('g').attr({
+          transform: 'translate(0,0)'
+        });
+        var bars = g.selectAll('rect').data(data);
+
+        bars.enter().append('rect');
+        bars.attr({
+          x: function(d, i) {
+            return xScale(i);
+          },
+          y: function(d) {
+            return height - yScale(d);
+          },
+          width: xScale.rangeBand(),
+          height: function(d) {
+            return yScale(d);
+          },
+          fill: '#d6a000'
+        })
+          .on('mouseover', function(d) {
+            var $this = d3.select(this);
+            if($this.classed('hover')){
+              return;
+            }
+            $this.classed('hover', true);
+            var popover = d3.select('body')
+              .selectAll('div.popover')
+              .data([d]);
+
+            popover.enter()
+              .append('div')
+              .classed('popover', true)
+              .style({
+                position: 'absolute',
+                width: '25px',
+                height: '25px',
+                top: d3.event.pageY + 'px',
+                left: d3.event.pageX + 'px'
+              })
+              .text(d);
+          })
+          .on('mousemove', function(d) {
+            d3.select('body')
+              .selectAll('div.popover')
+              .style({
+                position: 'absolute',
+                width: '25px',
+                height: '25px',
+                top: d3.event.pageY + 'px',
+                left: d3.event.pageX + 'px'
+              });
+          })
+          .on('mouseout', function(d) {
+            d3.select(this).classed('hover', false);
+            d3.selectAll('div.popover').remove();
+          });
+        bars.exit().remove();
+      });
+    </script>
+  </textarea>
+</article>
+
+<article class="slide slide-list">
+  <h2>Pie Layout and Arc Generator</h2>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="pie-layout"></svg>
+    <script>
+      d3.json('data/pie.json', function(error, pie){
+        var data = pie.data;
+        var width = 500;
+        var height = 500;
+        var radius = Math.min(width, height) / 2;
+        var svg = d3.select('svg')
+          .append('g')
+          .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
+        var color = d3.scale.ordinal()
+          .range(["#98abc5", "#8a89a6", "#d0743c", "#ff8c00"]);
+        var arc = d3.svg.arc()
+          .outerRadius(radius - 12)
+          .innerRadius(59);
+        var labelArc = d3.svg.arc()
+          .outerRadius(radius - 40)
+          .innerRadius(radius - 125);
+        var pie = d3.layout.pie()
+          .value(function(d) {
+            return d.value;
+          });
+        var g = svg.selectAll(".arc")
+          .data(pie(data))
+          .enter()
+          .append("g")
+          .attr({
+            'class': 'arc',
+            'stroke': '#ffffff'
+          });
+
+        g.append('path')
+          .attr('d', arc)
+          .style('fill', function(d) {
+            return color(d.data.label);
+          });
+        g.append('text')
+          .attr("transform", function(d) {
+            return 'translate(' + labelArc.centroid(d) + ')';
+          })
+          .attr({
+            dy: '.35em',
+            fill: '#FFF',
+            stroke: '#FFF'
+          })
+          .text(function(d) {
+            return d.data.label;
+          });
+      });
+    </script>
+  </textarea>
+
+</article>
+
+<article class="slide slide-list">
+  <h2>Axis Generator</h2>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="axis"></svg>
+    <script>
+      var svg = d3.select('svg.axis');
+      var scale = d3.scale.linear()
+        .domain([20, 12])
+        .range([10, 200]);
+      var axis = d3.svg.axis()
+        .scale(scale)
+        .orient('bottom')
+        .ticks(3);
+      var g = svg.append('g');
+
+      axis(g);
+      g.attr('transform', 'translate(50, 50)');
+      g.selectAll('path')
+        .style({ fill: 'none', stroke: '#000'});
+      g.selectAll('line')
+        .style({ stroke: '#000'});
+    </script>
+  </textarea>
+
+</article>
+
+<article class="slide slide-list">
+  <h2>Brush</h2>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="brush"></svg>
+    <script>
+      d3.json('data/line.json', function(error, line) {
+        var width = 500;
+        var height = 500;
+        var svg = d3.select('svg.brush')
+          .append('g')
+          .attr('transform', 'translate(-30, 90)');
+        var scale = d3.scale.linear()
+          .domain([20, 89])
+          .range([10, 468]);
+        var brush = d3.svg.brush();
+
+        brush.x(scale);
+        brush.extent([21,29]);
+        brush.on('brush', function(){
+          console.log(brush.extent());
+        });
+
+        var g = svg.append("g");
+        brush(g);
+
+        g.attr('transform','translate(50, 100)');
+        g.selectAll('rect').attr('height', 30);
+        g.selectAll('.background').style({
+          fill: '#4b9e9e',
+          visibility: 'visible'
+        });
+        g.selectAll('.extent').style({
+          fill: '#78c5c5',
+          visibility: 'visibile'
+        });
+        g.selectAll('.resize rect').style({
+          fill: '#276c86',
+          visibility: 'visible'
+        });
+      });
+    </script>
+  </textarea>
+
+</article>
+
+<article class="slide slide-list">
+
+  <h2>Force Layout</h2>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="force"></svg>
+    <script>
+
+    </script>
+  </textarea>
+
+</article>
+
+<article class="slide slide-list">
+
+  <h2>Geo</h2>
+  <textarea class="coder-editor coder-editor-instant">
+    <svg class="geo"></svg>
+    <script>
+
+    </script>
+  </textarea>
+
+</article>
+
+<article class="slide slide-list">
+  <h2>References</h2>
+  <ul>
+    <li><a href="http://d3js.org" target="_blank">d3js.org</a></li>
+    <li><a href="http://bl.ocks.org" target="_blank">bl.ocks.org</a> - Mike Bostock</li>
+    <li><a href="http://bost.ocks.org/mike/chart" target="_blank">Mike Bostock's reusable chart pattern</a></li>
+    <li><a href="http://bost.ocks.org/mike/join/" target="_blank">Thinking in Joins</a></li>
+    <li><a href="http://nvd3.org/ghpages/examples.html" target="_blank">NVD</a></li>
+    <li><a href="http://tributary.io" target="_blank">tributary.io</a> - live editing for d3 and visualization similar to plunker, jsfiddle, binjs etc.</li>
+    <li><a href="http://enjalot.github.io/intro-d3/frontendmasters" target="_blank">Ian Johnsons - D3 Tutorial References</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element" target="_blank">MDN SVG elements</a></li>
+    <li><a href="http://www.w3.org/TR/SVG/" target="_blank">W3C SVG Reference</a></li>
+  </ul>
+</article>
+
+
+<script src="lib/coderdeck.min.js"></script>
+
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>

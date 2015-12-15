@@ -1,0 +1,8 @@
+{
+  "data" : [
+    { "label": "north", "value": 100 },
+    { "label": "south", "value": 200 },
+    { "label": "east", "value": 300 },
+    { "label": "west", "value": 150 }
+  ]
+}
