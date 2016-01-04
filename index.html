@@ -95,22 +95,22 @@
   <h2>Rectangle</h2>
 
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="svg-rect-sample">
-      <rect x="0" y="0"
-            width="50" height="100"
-            style="fill: #FF0000"/>
-    </svg>
-    <script>
-      var rect = d3.select('svg.svg-rect-sample')
-        .append('rect');
-      rect.attr({
-        x: 100,
-        y: 0,
-        width: 50,
-        height: 100,
-        fill: '#000'
-      });
-    </script>
+<svg class="svg-rect-sample">
+  <rect x="0" y="0"
+        width="50" height="100"
+        style="fill: #FF0000"/>
+</svg>
+<script>
+  var rect = d3.select('svg.svg-rect-sample')
+    .append('rect');
+  rect.attr({
+    x: 100,
+    y: 0,
+    width: 50,
+    height: 100,
+    fill: '#000'
+  });
+</script>
   </textarea>
 </article>
 
@@ -118,22 +118,22 @@
   <h2>Circle</h2>
 
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="svg-circle-sample">
-      <circle cx="50" cy="50"
-              r="50"
-              style="fill: #FF0000"/>
-    </svg>
-    <script>
-      var circle = d3.select('svg.svg-circle-sample')
-        .append('circle');
+<svg class="svg-circle-sample">
+  <circle cx="50" cy="50"
+          r="50"
+          style="fill: #FF0000"/>
+</svg>
+<script>
+  var circle = d3.select('svg.svg-circle-sample')
+    .append('circle');
 
-      circle.attr({
-        cx: 200,
-        cy: 50,
-        r: 50,
-        fill: '#000'
-      });
-    </script>
+  circle.attr({
+    cx: 200,
+    cy: 50,
+    r: 50,
+    fill: '#000'
+  });
+</script>
   </textarea>
 </article>
 
@@ -141,22 +141,22 @@
   <h2>Ellipse</h2>
 
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="svg-ellipse-sample">
-      <ellipse cx="100" cy="100"
-              rx="100" ry="50"
-              style="fill: #FF0000"/>
-    </svg>
-    <script>
-      var ellipse = d3.select('svg.svg-ellipse-sample')
-        .append('ellipse');
-      ellipse.attr({
-        cx: 300,
-        cy: 300,
-        rx: 50,
-        ry: 100,
-        fill: '#000'
-      });
-    </script>
+<svg class="svg-ellipse-sample">
+  <ellipse cx="100" cy="100"
+          rx="100" ry="50"
+          style="fill: #FF0000"/>
+</svg>
+<script>
+  var ellipse = d3.select('svg.svg-ellipse-sample')
+    .append('ellipse');
+  ellipse.attr({
+    cx: 300,
+    cy: 300,
+    rx: 50,
+    ry: 100,
+    fill: '#000'
+  });
+</script>
   </textarea>
 </article>
 
@@ -193,39 +193,39 @@
 <article class="slide slide-list">
   <h2>Path and Line Generator</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="svg-path-sample">
-      <path d="M 50 50 l 100 25 l 150 100 l 200 300"
-        style="stroke: #FF0000; fill: none"/>
-    </svg>
-    <script>
-      var data = [150, 125, 200, 400];
-      var width = 500;
-      var height = 500;
-      var svg = d3.select('.svg-path-sample')
-        .append('g')
-        .attr('transform', 'translate(0, 0) scale(1)');
-      // Ordinal scale - doing things in order.
-      var x = d3.scale.ordinal()
-        // domain (array of min max)
-        .domain(d3.range(data.length))
-        // output range with padding.
-        .rangeBands([15, width], 0.5);
-      var y = d3.scale.linear()
-        // domain (array of min max)
-        .domain(d3.extent(data))
-        // output range, an array of values to return.
-        .range([0, height]);
-      // Line generator.
-      var line = d3.svg.line()
-        .x(function(d, i) { return x(i); })
-        .y(function(d) { return y(d); });
-      svg.append('path')
-        .attr('d', line(data))
-        .style({
-          fill: 'none',
-          stroke: '#000'
-        });
-    </script>
+<svg class="svg-path-sample">
+  <path d="M 50 50 l 100 25 l 150 100 l 200 300"
+    style="stroke: #FF0000; fill: none"/>
+</svg>
+<script>
+  var data = [150, 125, 200, 400];
+  var width = 500;
+  var height = 500;
+  var svg = d3.select('.svg-path-sample')
+    .append('g')
+    .attr('transform', 'translate(0, 0) scale(1)');
+  // Ordinal scale - doing things in order.
+  var x = d3.scale.ordinal()
+    // domain (array of min max)
+    .domain(d3.range(data.length))
+    // output range with padding.
+    .rangeBands([15, width], 0.5);
+  var y = d3.scale.linear()
+    // domain (array of min max)
+    .domain(d3.extent(data))
+    // output range, an array of values to return.
+    .range([0, height]);
+  // Line generator.
+  var line = d3.svg.line()
+    .x(function(d, i) { return x(i); })
+    .y(function(d) { return y(d); });
+  svg.append('path')
+    .attr('d', line(data))
+    .style({
+      fill: 'none',
+      stroke: '#000'
+    });
+</script>
   </textarea>
 </article>
 
@@ -265,46 +265,46 @@ circle.exit().remove();</pre>
 
   <h2>Scatter Plot</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="scatter-plot"></svg>
-    <script>
-      var height = 500;
-      var width = 500;
-      var svg = d3.select("svg.scatter-plot");
-      var data = [ 301, 20, 30, 40, 14, 7, 80, 73, 55, 93, 234, 2340, 303];
+<svg class="scatter-plot"></svg>
+<script>
+  var height = 500;
+  var width = 500;
+  var svg = d3.select("svg.scatter-plot");
+  var data = [ 301, 20, 30, 40, 14, 7, 80, 73, 55, 93, 234, 2340, 303];
 
-      data.sort(function(a,b) {
-        return a-b;
+  data.sort(function(a,b) {
+    return a-b;
+  });
+
+  var scale = d3.scale.linear()
+    .domain(d3.extent(data))
+    .range([0, height]);
+  var g = svg.append('g')
+    .attr({
+      transform: 'translate(113,17) scale(0.724598784)'
+    });
+  var circles = g.selectAll('circle')
+    .data(data);
+
+  circles.enter()
+    .append('circle')
+    .attr({
+      cx: function(d, i) {
+        return i * (width/data.length);
+      },
+      cy: function(d) {
+        return height - scale(d);
+      },
+      r: 10,
+      fill: '#2da0fe'
+    })
+    .on('click', function(d) {
+      d3.select(this).attr('fill', function(){
+        return '#ff5500';
       });
-
-      var scale = d3.scale.linear()
-        .domain(d3.extent(data))
-        .range([0, height]);
-      var g = svg.append('g')
-        .attr({
-          transform: 'translate(113,17) scale(0.724598784)'
-        });
-      var circles = g.selectAll('circle')
-        .data(data);
-
-      circles.enter()
-        .append('circle')
-        .attr({
-          cx: function(d, i) {
-            return i * (width/data.length);
-          },
-          cy: function(d) {
-            return height - scale(d);
-          },
-          r: 10,
-          fill: '#2da0fe'
-        })
-        .on('click', function(d) {
-          d3.select(this).attr('fill', function(){
-            return '#ff5500';
-          });
-        });
-      circles.exit().remove();
-    </script>
+    });
+  circles.exit().remove();
+</script>
   </textarea>
 
 </article>
@@ -335,135 +335,135 @@ circle.exit().remove();</pre>
   <h2>Bar Chart</h2>
   <p>Offset y by height, otherwise bars are upside down</p>
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="bar-chart"></svg>
-    <script>
-      d3.json('data/bar.json', function(error, res) {
-        var width = 500;
-        var height = 500;
-        var svg = d3.select('svg.bar-chart');
-        var data = res.data;
-        var max = d3.max(data);
-        var xScale = d3.scale.ordinal()
-          .domain(d3.range(data.length))
-          .rangeBands([0, width], 0.25);
-        var yScale = d3.scale.linear()
-          .domain([0, max])
-          .range([0, height]);
-        var g = svg.append('g').attr({
-          transform: 'translate(0,0)'
-        });
-        var bars = g.selectAll('rect').data(data);
+<svg class="bar-chart"></svg>
+<script>
+  d3.json('data/bar.json', function(error, res) {
+    var width = 500;
+    var height = 500;
+    var svg = d3.select('svg.bar-chart');
+    var data = res.data;
+    var max = d3.max(data);
+    var xScale = d3.scale.ordinal()
+      .domain(d3.range(data.length))
+      .rangeBands([0, width], 0.25);
+    var yScale = d3.scale.linear()
+      .domain([0, max])
+      .range([0, height]);
+    var g = svg.append('g').attr({
+      transform: 'translate(0,0)'
+    });
+    var bars = g.selectAll('rect').data(data);
 
-        bars.enter().append('rect');
-        bars.attr({
-          x: function(d, i) {
-            return xScale(i);
-          },
-          y: function(d) {
-            return height - yScale(d);
-          },
-          width: xScale.rangeBand(),
-          height: function(d) {
-            return yScale(d);
-          },
-          fill: '#d6a000'
-        })
-          .on('mouseover', function(d) {
-            var $this = d3.select(this);
-            if($this.classed('hover')){
-              return;
-            }
-            $this.classed('hover', true);
-            var popover = d3.select('body')
-              .selectAll('div.popover')
-              .data([d]);
+    bars.enter().append('rect');
+    bars.attr({
+      x: function(d, i) {
+        return xScale(i);
+      },
+      y: function(d) {
+        return height - yScale(d);
+      },
+      width: xScale.rangeBand(),
+      height: function(d) {
+        return yScale(d);
+      },
+      fill: '#d6a000'
+    })
+      .on('mouseover', function(d) {
+        var $this = d3.select(this);
+        if($this.classed('hover')){
+          return;
+        }
+        $this.classed('hover', true);
+        var popover = d3.select('body')
+          .selectAll('div.popover')
+          .data([d]);
 
-            popover.enter()
-              .append('div')
-              .classed('popover', true)
-              .style({
-                position: 'absolute',
-                width: '25px',
-                height: '25px',
-                top: d3.event.pageY + 'px',
-                left: d3.event.pageX + 'px'
-              })
-              .text(d);
+        popover.enter()
+          .append('div')
+          .classed('popover', true)
+          .style({
+            position: 'absolute',
+            width: '25px',
+            height: '25px',
+            top: d3.event.pageY + 'px',
+            left: d3.event.pageX + 'px'
           })
-          .on('mousemove', function(d) {
-            d3.select('body')
-              .selectAll('div.popover')
-              .style({
-                position: 'absolute',
-                width: '25px',
-                height: '25px',
-                top: d3.event.pageY + 'px',
-                left: d3.event.pageX + 'px'
-              });
-          })
-          .on('mouseout', function(d) {
-            d3.select(this).classed('hover', false);
-            d3.selectAll('div.popover').remove();
+          .text(d);
+      })
+      .on('mousemove', function(d) {
+        d3.select('body')
+          .selectAll('div.popover')
+          .style({
+            position: 'absolute',
+            width: '25px',
+            height: '25px',
+            top: d3.event.pageY + 'px',
+            left: d3.event.pageX + 'px'
           });
-        bars.exit().remove();
+      })
+      .on('mouseout', function(d) {
+        d3.select(this).classed('hover', false);
+        d3.selectAll('div.popover').remove();
       });
-    </script>
+    bars.exit().remove();
+  });
+</script>
   </textarea>
 </article>
 
 <article class="slide slide-list">
   <h2>Pie Layout and Arc Generator</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="pie-layout"></svg>
-    <script>
-      d3.json('data/pie.json', function(error, pie){
-        var data = pie.data;
-        var width = 500;
-        var height = 500;
-        var radius = Math.min(width, height) / 2;
-        var svg = d3.select('svg')
-          .append('g')
-          .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
-        var color = d3.scale.ordinal()
-          .range(["#98abc5", "#8a89a6", "#d0743c", "#ff8c00"]);
-        var arc = d3.svg.arc()
-          .outerRadius(radius - 12)
-          .innerRadius(59);
-        var labelArc = d3.svg.arc()
-          .outerRadius(radius - 40)
-          .innerRadius(radius - 125);
-        var pie = d3.layout.pie()
-          .value(function(d) {
-            return d.value;
-          });
-        var g = svg.selectAll(".arc")
-          .data(pie(data))
-          .enter()
-          .append("g")
-          .attr({
-            'class': 'arc',
-            'stroke': '#ffffff'
-          });
-
-        g.append('path')
-          .attr('d', arc)
-          .style('fill', function(d) {
-            return color(d.data.label);
-          });
-        g.append('text')
-          .attr("transform", function(d) {
-            return 'translate(' + labelArc.centroid(d) + ')';
-          })
-          .attr({
-            dy: '.35em',
-            fill: '#FFF',
-            stroke: '#FFF'
-          })
-          .text(function(d) {
-            return d.data.label;
-          });
+<svg class="pie-layout"></svg>
+<script>
+  d3.json('data/pie.json', function(error, pie){
+    var data = pie.data;
+    var width = 500;
+    var height = 500;
+    var radius = Math.min(width, height) / 2;
+    var svg = d3.select('svg')
+      .append('g')
+      .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
+    var color = d3.scale.ordinal()
+      .range(["#98abc5", "#8a89a6", "#d0743c", "#ff8c00"]);
+    var arc = d3.svg.arc()
+      .outerRadius(radius - 12)
+      .innerRadius(59);
+    var labelArc = d3.svg.arc()
+      .outerRadius(radius - 40)
+      .innerRadius(radius - 125);
+    var pie = d3.layout.pie()
+      .value(function(d) {
+        return d.value;
       });
-    </script>
+    var g = svg.selectAll(".arc")
+      .data(pie(data))
+      .enter()
+      .append("g")
+      .attr({
+        'class': 'arc',
+        'stroke': '#ffffff'
+      });
+
+    g.append('path')
+      .attr('d', arc)
+      .style('fill', function(d) {
+        return color(d.data.label);
+      });
+    g.append('text')
+      .attr("transform", function(d) {
+        return 'translate(' + labelArc.centroid(d) + ')';
+      })
+      .attr({
+        dy: '.35em',
+        fill: '#FFF',
+        stroke: '#FFF'
+      })
+      .text(function(d) {
+        return d.data.label;
+      });
+  });
+</script>
   </textarea>
 
 </article>
@@ -471,25 +471,25 @@ circle.exit().remove();</pre>
 <article class="slide slide-list">
   <h2>Axis Generator</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="axis"></svg>
-    <script>
-      var svg = d3.select('svg.axis');
-      var scale = d3.scale.linear()
-        .domain([20, 12])
-        .range([10, 200]);
-      var axis = d3.svg.axis()
-        .scale(scale)
-        .orient('bottom')
-        .ticks(3);
-      var g = svg.append('g');
+<svg class="axis"></svg>
+<script>
+  var svg = d3.select('svg.axis');
+  var scale = d3.scale.linear()
+    .domain([20, 12])
+    .range([10, 200]);
+  var axis = d3.svg.axis()
+    .scale(scale)
+    .orient('bottom')
+    .ticks(3);
+  var g = svg.append('g');
 
-      axis(g);
-      g.attr('transform', 'translate(50, 50)');
-      g.selectAll('path')
-        .style({ fill: 'none', stroke: '#000'});
-      g.selectAll('line')
-        .style({ stroke: '#000'});
-    </script>
+  axis(g);
+  g.attr('transform', 'translate(50, 50)');
+  g.selectAll('path')
+    .style({ fill: 'none', stroke: '#000'});
+  g.selectAll('line')
+    .style({ stroke: '#000'});
+</script>
   </textarea>
 
 </article>
@@ -497,44 +497,44 @@ circle.exit().remove();</pre>
 <article class="slide slide-list">
   <h2>Brush</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="brush"></svg>
-    <script>
-      d3.json('data/line.json', function(error, line) {
-        var width = 500;
-        var height = 500;
-        var svg = d3.select('svg.brush')
-          .append('g')
-          .attr('transform', 'translate(-30, 90)');
-        var scale = d3.scale.linear()
-          .domain([20, 89])
-          .range([10, 468]);
-        var brush = d3.svg.brush();
+<svg class="brush"></svg>
+<script>
+  d3.json('data/line.json', function(error, line) {
+    var width = 500;
+    var height = 500;
+    var svg = d3.select('svg.brush')
+      .append('g')
+      .attr('transform', 'translate(-30, 90)');
+    var scale = d3.scale.linear()
+      .domain([20, 89])
+      .range([10, 468]);
+    var brush = d3.svg.brush();
 
-        brush.x(scale);
-        brush.extent([21,29]);
-        brush.on('brush', function(){
-          console.log(brush.extent());
-        });
+    brush.x(scale);
+    brush.extent([21,29]);
+    brush.on('brush', function(){
+      console.log(brush.extent());
+    });
 
-        var g = svg.append("g");
-        brush(g);
+    var g = svg.append("g");
+    brush(g);
 
-        g.attr('transform','translate(50, 100)');
-        g.selectAll('rect').attr('height', 30);
-        g.selectAll('.background').style({
-          fill: '#4b9e9e',
-          visibility: 'visible'
-        });
-        g.selectAll('.extent').style({
-          fill: '#78c5c5',
-          visibility: 'visibile'
-        });
-        g.selectAll('.resize rect').style({
-          fill: '#276c86',
-          visibility: 'visible'
-        });
-      });
-    </script>
+    g.attr('transform','translate(50, 100)');
+    g.selectAll('rect').attr('height', 30);
+    g.selectAll('.background').style({
+      fill: '#4b9e9e',
+      visibility: 'visible'
+    });
+    g.selectAll('.extent').style({
+      fill: '#78c5c5',
+      visibility: 'visibile'
+    });
+    g.selectAll('.resize rect').style({
+      fill: '#276c86',
+      visibility: 'visible'
+    });
+  });
+</script>
   </textarea>
 
 </article>
@@ -542,62 +542,59 @@ circle.exit().remove();</pre>
 <article class="slide slide-list">
   <h2>Force Layout</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <style>
-      .node {
-        stroke: #fff;
-        stroke-width: 1.5px;
-      }
-      .link {
-        stroke: #999;
-        stroke-opacity: .6;
-      }
-    </style>
-    <svg class="force"></svg>
-    <script>
-      var width = 500;
-      var height = 500;
-      var color = d3.scale.category20();
-      var force = d3.layout.force()
-        .charge(-120)
-        .linkDistance(30)
-        .size([width, height]);
-      var svg = d3.select("svg.force");
+<style>
+  .node {
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+  .link {
+    stroke: #999;
+    stroke-opacity: .6;
+  }
+</style>
+<svg class="force"></svg>
+<script>
+  var width = 500;
+  var height = 500;
+  var color = d3.scale.category20();
+  var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+  var svg = d3.select("svg.force");
 
-      d3.json("data/miserables.json", function(error, graph) {
-        force
-          .nodes(graph.nodes)
-          .links(graph.links)
-          .start();
+  d3.json("data/miserables.json", function(error, graph) {
+    force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
 
-        var link = svg.selectAll(".link")
-          .data(graph.links)
-          .enter().append("line")
-          .attr("class", "link")
-          .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-        var node = svg.selectAll(".node")
-          .data(graph.nodes)
-          .enter().append("circle")
-          .attr("class", "node")
-          .attr("r", 5)
-          .style("fill", function(d) { return color(d.group); })
-          .call(force.drag);
+    var link = svg.selectAll(".link")
+      .data(graph.links)
+      .enter().append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+    var node = svg.selectAll(".node")
+      .data(graph.nodes)
+      .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", 5)
+      .style("fill", function(d) { return color(d.group); })
+      .call(force.drag);
 
-        node.append("title")
-          .text(function(d) { return d.name; });
+    node.append("title")
+      .text(function(d) { return d.name; });
 
-        force.on("tick", function() {
-          link.attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
-          node.attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
-        });
-
-
-      });
-
-    </script>
+    force.on("tick", function() {
+      link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+      node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+    });
+  });
+</script>
   </textarea>
 
 </article>
@@ -646,71 +643,63 @@ circle.exit().remove();</pre>
 
   <h2>Geo Code Example</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <span class="mopoptitle"></span>
-    <svg class="geo"></svg>
-    <script>
-      var w = 500;
-      var h = 500;
-
-//      Projection
-      var projection = d3.geo.mercator()
-        .translate([w*10.25, h*5])
-        .scale([3000]);
-
-//      Geo Path Generator
-      var path = d3.geo.path().projection(projection);
-      var g = d3.select('svg.geo')
-        .attr({
-          width: w,
-          height: h
-        })
-        .append('g');
-
-        // colorbrewer2.org Chloropleth
-        var colorScale = d3.scale.linear()
-          .range(['#fef0d9','#fdcc8a','#fc8d59','#e34a33','#b30000']);
-
-        d3.json('data/mo-counties.geo.json', function(json) {
-          var is1990 = true;
-          var max1990 = d3.max(json.features, function(d) {
-            return d.properties.pop_1990;
-          });
-          var max2000 = d3.max(json.features, function(d) {
-            return d.properties.pop_2000;
-          });
+<span class="mopoptitle"></span>
+<svg class="geo"></svg>
+<script>
+  var w = 500;
+  var h = 500;
+// Projection
+  var projection = d3.geo.mercator()
+    .translate([w*10.25, h*5])
+    .scale([3000]);
+// Geo Path Generator
+  var path = d3.geo.path().projection(projection);
+  var g = d3.select('svg.geo')
+    .attr({ width: w, height: h }).append('g');
+// Get the data
+  d3.json('data/mo-counties.geo.json', function(json) {
+    var is1990 = true;
+    var max1990 = d3.max(json.features, function(d) {
+      return d.properties.pop_1990;
+    });
+    var max2000 = d3.max(json.features, function(d) {
+      return d.properties.pop_2000;
+    });
+// colorbrewer2.org Chloropleth
+    var colorScale = d3.scale.linear()
+      .range(['#fef0d9','#fdcc8a','#fc8d59','#e34a33','#b30000'])
+      .domain([0, max1990]);
+    var mopoptitle = d3.selectAll('.mopoptitle').text('MO Population 1990');
+    var map = g.selectAll('path')
+      .data(json.features)
+      .enter()
+      .append('path')
+      .attr('d', path)
+      .style('fill', fill1990)
+      .on('click', function() {
+        is1990 = !is1990;
+        if(is1990) {
           colorScale.domain([0, max1990]);
-          var mopoptitle = d3.selectAll('.mopoptitle').text('MO Population 1990');
-          var map = g.selectAll('path')
-            .data(json.features)
-            .enter()
-            .append('path')
-            .attr('d', path)
-            .style('fill', fill1990)
-            .on('click', function() {
-              is1990 = !is1990;
-              if(is1990) {
-                colorScale.domain([0, max1990]);
-                map.transition().style('fill', fill1990);
-                mopoptitle.transition().text('MO Population 1990');
-              } else {
-                colorScale.domain([0, max2000]);
-                map.transition().style('fill', fill2000);
-                mopoptitle.transition().text('MO Population 2000');
-              }
-            });
+          map.transition().style('fill', fill1990);
+          mopoptitle.transition().text('MO Population 1990');
+        } else {
+          colorScale.domain([0, max2000]);
+          map.transition().style('fill', fill2000);
+          mopoptitle.transition().text('MO Population 2000');
+        }
+      });
 
-          function fill1990(d) {
-            var value = d.properties.pop_1990;
-            return value ? colorScale(value) : '#666';
-          }
+    function fill1990(d) {
+      var value = d.properties.pop_1990;
+      return value ? colorScale(value) : '#666';
+    }
 
-          function fill2000(d) {
-            var value = d.properties.pop_2000;
-            return value ? colorScale(value) : '#666';
-          }
-
-        });
-    </script>
+    function fill2000(d) {
+      var value = d.properties.pop_2000;
+      return value ? colorScale(value) : '#666';
+    }
+  });
+</script>
   </textarea>
 
 </article>
@@ -798,7 +787,7 @@ circle.exit().remove();</pre>
 
   <h3>D3 Examples</h3>
   <ul>
-    <li><li><a href="http://nvd3.org/ghpages/examples.html" target="_blank">NVD</a></li></li>
+    <li><a href="http://nvd3.org/ghpages/examples.html" target="_blank">NVD</a></li>
     <li><a href="http://bost.ocks.org">Blocks - D3 Examples with code</a></li>
     <li><a href="http://bost.ocks.org/mike/example" target="_blank">Mike's Blocks Examples</a></li>
     <li><a href="http://bost.ocks.org/jasondavies" target="_blank">Jason Davies Blocks</a></li>
