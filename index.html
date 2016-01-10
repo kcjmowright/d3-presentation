@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>D3 JS - KCJS Presentation</title>
   <meta name="viewport" content="width=1024">
-  <link href='https://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="styles/coderdeck-core.min.css" type="text/css">
   <link rel="stylesheet" id='style-theme-link' href="styles/coderdeck.css" type="text/css">
 
@@ -312,12 +312,17 @@ circle.exit().remove();</pre>
 <article class="slide slide-list">
 
   <h2>Data Sources</h2>
-
+  <p>D3 is able to access a variety of XHR type data sources.</p>
   <ul>
     <li>json</li>
     <li>csv</li>
     <li>tsv</li>
+    <li>xml</li>
   </ul>
+
+  <pre>d3.json("my.json", function(error, json) {
+    // do something.
+  });</pre>
 
   <h3>Public Data Sources</h3>
   <ul>
@@ -707,66 +712,119 @@ circle.exit().remove();</pre>
 <article class="slide slide-list">
   <h2>Reusable Chart Pattern</h2>
   <textarea class="coder-editor coder-editor-instant">
-    <svg class="reusable"></svg>
-    <script>
-      (function() {
+<svg class="reusable"></svg>
+<script>
+(function() {
+  var chart = myChart();
 
-        function myChart() {
+  chart.data([10,20,30,40,50,60,70,80,90,100]);
+  chart('svg.reusable');
 
-          var width = 500;
-          var height = 500;
-          var data = [];
-          var dispatch = d3.dispatch(chart, 'filter');
+  function myChart() {
+    var width = 500;
+    var height = 500;
+    var data = [];
+    var fill = '#78c5c5';
+    var exponent = 1;
 
-          function chart(element) {
-            var g =  d3.select(element).append('g').attr({transform : 'translate(0,0)'});
+    function chart(element) {
+      var max = d3.max(data);
+      var xScale = d3.scale.ordinal()
+        .domain(d3.range(data.length))
+        .rangeBands([0, width], 0.25);
+      var yScale = d3.scale.pow()
+        .exponent(exponent)
+        .domain([0, max])
+        .range([0, height]);
+      var axisScale = d3.scale.pow()
+        .exponent(exponent)
+        .domain([0, max])
+        .range([height, 0]);
+      var g = d3.select(element).append('g').attr({
+        transform: 'translate(80,10) scale(0.8)'
+      });
+      var bars = g.selectAll('rect').data(data);
+      var axis = d3.svg.axis()
+        .scale(axisScale)
+        .orient('left')
+        .ticks(4);
+      var axisContainer = d3.select(element).append('g');
+      var brush = d3.svg.brush();
+      var brushContainer = d3.select(element).append("g");
 
-            var brush = d3.brush();
+      brush.x(yScale);
+      brush.extent([21,29]);
+      brush.on('brush', function(){
+        console.log(brush.extent());
+      });
+      brush(brushContainer);
+      brushContainer.attr('transform', 'translate(80, ' + (height - 30) + ') scale(0.8)');
+      brushContainer.selectAll('rect').attr('height', 30);
+      brushContainer.selectAll('.background').style({
+        fill: '#4b9e9e',
+        visibility: 'visible'
+      });
+      brushContainer.selectAll('.extent').style({
+        fill: fill,
+        visibility: 'visibile'
+      });
+      brushContainer.selectAll('.resize rect').style({
+        fill: '#276c86',
+        visibility: 'visible'
+      });
 
-            brush.on('brushend', function(){
-              var ext = brush.extent();
-              var filtered = data.filter(function(d) {
-                return (d.data.created > ext[0] && d.data.created < ext[1]);
-              });
-              g.selectAll('rect.events').style('stroke', '');
-              g.selectAll('rect.events').data(filtered, function(d) { return d.data.id; }).style({ stroke: '#fff'; });
-              //emit filtered data
-              dispatch.filter(filtered);
-            });
+      axis(axisContainer);
+      axisContainer.attr('transform', 'translate(80,10) scale(0.8)');
+      axisContainer.selectAll('path')
+        .style({ fill: 'none', stroke: '#000'});
+      axisContainer.selectAll('line')
+        .style({ stroke: '#000'});
 
-          }
+      bars.enter().append('rect');
+      bars.attr({
+        x: function(d, i) { return xScale(i); },
+        y: function(d) { return height - yScale(d); },
+        width: xScale.rangeBand(),
+        height: function(d) { return yScale(d); },
+        fill: fill
+      });
+      bars.exit.remove();
+    }
 
-          chart.data = function(value) {
-            if (!value) {
-              return data;
-            }
-            data = value;
-            return chart;
-          };
+    chart.fill = function(value) {
+      if(!value) { return fill; }
+      fill = value;
+      return chart;
+    };
 
-          chart.width = function(value) {
-            if (!value) {
-              return width;
-            }
-            width = value;
-            return chart;
-          };
+    chart.data = function(value) {
+      if (!value) { return data; }
+      data = value;
+      return chart;
+    };
 
-          chart.height = function(value) {
-            if (!value) {
-              return height;
-            }
-            height = value;
-            return chart;
-          };
+    chart.width = function(value) {
+      if (!value) { return width; }
+      width = value;
+      return chart;
+    };
 
-          return chart;
-          //return d3.rebind(chart, dispatch, 'on');
-        }
+    chart.height = function(value) {
+      if (!value) { return height; }
+      height = value;
+      return chart;
+    };
 
+    chart.exponent = function(value) {
+      if (!value) { return exponent; }
+      exponent = value;
+      return chart;
+    };
 
-      })();
-    </script>
+    return chart;
+  }
+})();
+</script>
   </textarea>
 
 </article>
