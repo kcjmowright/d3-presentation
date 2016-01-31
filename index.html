@@ -56,9 +56,11 @@
   <h2>SVG</h2>
 
   <h3>Shapes</h3>
-  <p>
+  <div class="collapsible">
+    <p>
     SVG coordinate system  0,0 in upper left, basically the y or vertical is flipped compared to the traditional mathematical cartesian coordinate system.<br />
     Many element attributes are also style attributes. Best practice is to use CSS.
+    </p>
     <ul>
       <li>Rectangles - &lt;rect x="0" y="0" width="100" height="200" /&gt;</li>
       <li>Circles - &lt;circle cx="100" cy="100" r="100" /&gt;</li>
@@ -67,10 +69,10 @@
       <li>Grouping - &lt;g&gt; ... &lt;/g&gt;</li>
       <li>Use - &lt;use /&gt;  Performance issues.  Best to just inject string markup.</li>
     </ul>
-  </p>
+  </div>
 
   <h3>Filters</h3>
-  <p>
+  <div class="collapsible">
     <ul>
       <li>&lt;feBlend&gt; - filter for combining images</li>
       <li>&lt;feColorMatrix&gt; - filter for color transforms</li>
@@ -80,15 +82,15 @@
       <li>&lt;feOffset&gt; - filter for drop shadows</li>
       <li>etc...</li>
     </ul>
-  </p>
+  </div>
 
   <h3>Gradients</h3>
-  <p>
+  <div class="collapsible">
     <ul>
       <li>Linear</li>
       <li>Radial</li>
     </ul>
-  </p>
+  </div>
 </article>
 
 <article class="slide slide-list">
@@ -165,28 +167,45 @@
   <h2>D3 Fundamentals</h2>
 
   <h3>Basics</h3>
-  <ul>
-    <li>Declarative style.  Eliminates loops. </li>
-    <li>Function chaining.</li>
-    <li>Multi-value map in a single API call.</li>
-  </ul>
+  <div class="collapsible">
+    <ul>
+      <li>Declarative style.  Eliminates loops. </li>
+      <li>Function chaining.</li>
+      <li>Multi-value map in a single API call.</li>
+    </ul>
+  </div>
 
   <h3>Selections</h3>
-  <p>Supports all CSS operators.  Creates jQuery like selection.</p>
-  <ul>
-    <li>select - Select the first match.</li>
-    <li>selectAll - Select all matches.</li>
-  </ul>
+  <div class="collapsible">
+    <p>Supports all CSS operators.  Creates jQuery like selection.</p>
+    <ul>
+      <li>select - Select the first match.</li>
+      <li>selectAll - Select all matches.</li>
+    </ul>
+  </div>
 
   <h3>DOM Manipulation</h3>
-  <ul>
-    <li>append - Appends an element as the last child into the last element in the chain.</li>
-    <li>insert - Inserts an element as the first child into the last element in the chain.</li>
-    <li>remove - Removes a selection(s)</li>
-    <li>attr - Modifies or accesses attributes.</li>
-    <li>style - Apply style to a selection.  Best practice is to use CSS stylesheets.</li>
-    <li>classed - Add or remove a CSS class.</li>
-  </ul>
+  <div class="collapsible">
+    <ul>
+      <li>append - Appends an element as the last child into the last element in the chain.</li>
+      <li>insert - Inserts an element as the first child into the last element in the chain.</li>
+      <li>remove - Removes a selection(s)</li>
+      <li>attr - Modifies or accesses attributes.</li>
+      <li>style - Apply style to a selection.  Best practice is to use CSS stylesheets.</li>
+      <li>classed - Add or remove a CSS class.</li>
+    </ul>
+  </div>
+
+  <h3>Scales</h3>
+  <div class="collapsible">
+    <p>Data needs to be transformed to fit within the given real estate or mapped to other values.  Define the domain and range of a data set.</p>
+    <ul>
+      <li>linear - continuous input domain to a continuous output range</li>
+      <li>ordinal - a discrete domain, such as a set of names or categories</li>
+      <li>pow - exponential transform</li>
+      <li>log - logarithmic transform</li>
+    </ul>
+  </div>
 
 </article>
 
@@ -199,8 +218,7 @@
 </svg>
 <script>
   var data = [150, 125, 200, 400];
-  var width = 500;
-  var height = 500;
+  var width = 500, height = 500;
   var svg = d3.select('.svg-path-sample')
     .append('g')
     .attr('transform', 'translate(0, 0) scale(1)');
@@ -233,13 +251,6 @@
 
   <h2>Joining Data and DOM</h2>
 
-  <ul><li>data - Joins the specified array of data with the current selection.</li></ul>
-  <pre>var circle = svg.selectAll("circle").data(data);</pre>
-  <ul>
-    <li>enter - Data without elements.</li>
-    <li><em>Update</em> - Data with existing elements.</li>
-    <li>exit - Elements without data.</li>
-  </ul>
   <svg width="350" height="220">
     <g transform="translate(10,10)">
       <circle cx="100" cy="100"
@@ -255,9 +266,24 @@
       <text x="250" y="25">DOM</text>
     </g>
   </svg>
-  <pre>circle.enter().append("circle");
-circle.exit().remove();</pre>
-  <p>See also <a href="http://bost.ocks.org/mike/join/">Thinking with Joins</a></p>
+
+  <h3>The <i>data</i> Method</h3>
+  <div class="collapsible">
+      <p>Joins the specified array of data with the current selection.</p>
+      <pre>var circles = svg.selectAll("circle").data(data);</pre>
+  </div>
+
+  <h3>The <i>enter</i> Method</h3>
+  <div class="collapsible">
+    <p>Data without elements is bound to newly created elements.</p>
+    <pre>circles.enter().append("circle");</pre>
+  </div>
+
+  <h3>The <i>exit</i> Method</h3>
+  <div class="collapsible">
+    <p>Elements without data are selected and usually removed.</p>
+    <pre>circles.exit().remove();</pre>
+  </div>
 
 </article>
 
@@ -267,8 +293,7 @@ circle.exit().remove();</pre>
   <textarea class="coder-editor coder-editor-instant">
 <svg class="scatter-plot"></svg>
 <script>
-  var height = 500;
-  var width = 500;
+  var height = 500, width = 500;
   var svg = d3.select("svg.scatter-plot");
   var data = [ 301, 20, 30, 40, 14, 7, 80, 73, 55, 93, 234, 2340, 303];
 
@@ -312,39 +337,43 @@ circle.exit().remove();</pre>
 <article class="slide slide-list">
 
   <h2>Data Sources</h2>
-  <p>D3 is able to access a variety of XHR type data sources.</p>
-  <ul>
-    <li>json</li>
-    <li>csv</li>
-    <li>tsv</li>
-    <li>xml</li>
-  </ul>
 
-  <pre>d3.json("my.json", function(error, json) {
-    // do something.
-  });</pre>
+  <h3>AJAX Methods to Retrieve Data</h3>
+  <div class="collapsible">
+    <p>D3 is able to access a variety of AJAX type data sources.</p>
+    <ul>
+      <li>json</li>
+      <li>csv</li>
+      <li>tsv</li>
+      <li>xml</li>
+    </ul>
+    <pre>d3.json("my.json", function(error, json) {
+      // do something.
+    });</pre>
+  </div>
 
   <h3>Public Data Sources</h3>
-  <ul>
-    <li>data.kcmo.gov</li>
-    <li>data.mo.gov</li>
-    <li>census.gov</li>
-    <li>data.gov</li>
-    <li>dev.twitter.com</li>
-    <li>github</li>
-    <li>bitcoin, coinbase</li>
-  </ul>
+  <div class="collapsible">
+    <p>There are many publicly available and free data sources.</p>
+    <ul>
+      <li>data.kcmo.gov</li>
+      <li>data.mo.gov</li>
+      <li>census.gov</li>
+      <li>data.gov</li>
+      <li>dev.twitter.com</li>
+      <li>github</li>
+      <li>bitcoin, coinbase</li>
+    </ul>
+  </div>
 </article>
 
 <article class="slide slide-list">
   <h2>Bar Chart</h2>
-  <p>Offset y by height, otherwise bars are upside down</p>
   <textarea class="coder-editor coder-editor-instant">
 <svg class="bar-chart"></svg>
 <script>
   d3.json('data/bar.json', function(error, res) {
-    var width = 500;
-    var height = 500;
+    var width = 500, height = 500;
     var svg = d3.select('svg.bar-chart');
     var data = res.data;
     var max = d3.max(data);
@@ -423,8 +452,7 @@ circle.exit().remove();</pre>
 <script>
   d3.json('data/pie.json', function(error, pie){
     var data = pie.data;
-    var width = 500;
-    var height = 500;
+    var width = 500, height = 500;
     var radius = Math.min(width, height) / 2;
     var svg = d3.select('svg')
       .append('g')
@@ -504,40 +532,37 @@ circle.exit().remove();</pre>
   <textarea class="coder-editor coder-editor-instant">
 <svg class="brush"></svg>
 <script>
-  d3.json('data/line.json', function(error, line) {
-    var width = 500;
-    var height = 500;
-    var svg = d3.select('svg.brush')
-      .append('g')
-      .attr('transform', 'translate(-30, 90)');
-    var scale = d3.scale.linear()
-      .domain([20, 89])
-      .range([10, 468]);
-    var brush = d3.svg.brush();
+  var width = 500, height = 500;
+  var svg = d3.select('svg.brush')
+    .append('g')
+    .attr('transform', 'translate(-30, 90)');
+  var scale = d3.scale.linear()
+    .domain([20, 89])
+    .range([10, 468]);
+  var brush = d3.svg.brush();
 
-    brush.x(scale);
-    brush.extent([21,29]);
-    brush.on('brush', function(){
-      console.log(brush.extent());
-    });
+  brush.x(scale);
+  brush.extent([21,29]);
+  brush.on('brush', function(){
+    console.log(brush.extent());
+  });
 
-    var g = svg.append("g");
-    brush(g);
+  var g = svg.append("g");
+  brush(g);
 
-    g.attr('transform','translate(50, 100)');
-    g.selectAll('rect').attr('height', 30);
-    g.selectAll('.background').style({
-      fill: '#4b9e9e',
-      visibility: 'visible'
-    });
-    g.selectAll('.extent').style({
-      fill: '#78c5c5',
-      visibility: 'visibile'
-    });
-    g.selectAll('.resize rect').style({
-      fill: '#276c86',
-      visibility: 'visible'
-    });
+  g.attr('transform','translate(50, 100)');
+  g.selectAll('rect').attr('height', 30);
+  g.selectAll('.background').style({
+    fill: '#4b9e9e',
+    visibility: 'visible'
+  });
+  g.selectAll('.extent').style({
+    fill: '#78c5c5',
+    visibility: 'visibile'
+  });
+  g.selectAll('.resize rect').style({
+    fill: '#276c86',
+    visibility: 'visible'
   });
 </script>
   </textarea>
@@ -547,6 +572,56 @@ circle.exit().remove();</pre>
 <article class="slide slide-list">
   <h2>Force Layout</h2>
   <textarea class="coder-editor coder-editor-instant">
+<svg class="force"></svg>
+<script>
+  var width = 500, height = 500;
+  var color = d3.scale.category20();
+  var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+  var svg = d3.select("svg.force");
+
+  d3.json("data/miserables.json", function(error, graph) {
+
+    var link = svg.selectAll(".link")
+      .data(graph.links)
+      .enter()
+      .append("line")
+      .attr({
+        "class": "link",
+        "stroke-width": function(d) {
+          return Math.sqrt(d.value);
+        }
+      });
+    var node = svg.selectAll(".node")
+      .data(graph.nodes)
+      .enter()
+      .append("circle")
+      .attr({
+        "class": "node",
+        "r": 10,
+        "fill": function(d) { return color(d.group); }
+      })
+      .call(force.drag);
+
+    node.append("title")
+      .text(function(d) { return d.name; });
+
+    force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start()
+      .on("tick", function() {
+        link.attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+        node.attr("cx", function(d) { return d.x; })
+          .attr("cy", function(d) { return d.y; });
+      });
+  });
+</script>
 <style>
   .node {
     stroke: #fff;
@@ -557,91 +632,56 @@ circle.exit().remove();</pre>
     stroke-opacity: .6;
   }
 </style>
-<svg class="force"></svg>
-<script>
-  var width = 500;
-  var height = 500;
-  var color = d3.scale.category20();
-  var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
-    .size([width, height]);
-  var svg = d3.select("svg.force");
-
-  d3.json("data/miserables.json", function(error, graph) {
-    force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .start();
-
-    var link = svg.selectAll(".link")
-      .data(graph.links)
-      .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-    var node = svg.selectAll(".node")
-      .data(graph.nodes)
-      .enter().append("circle")
-      .attr("class", "node")
-      .attr("r", 5)
-      .style("fill", function(d) { return color(d.group); })
-      .call(force.drag);
-
-    node.append("title")
-      .text(function(d) { return d.name; });
-
-    force.on("tick", function() {
-      link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-      node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-    });
-  });
-</script>
   </textarea>
 
 </article>
 
 <article class="slide slide-list">
   <h2>Geo</h2>
-  <h3>Get the Data</h3>
-  <ul>
-    <li><a href="http://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html">http://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html</a></li>
-    <li><a href="http://data.mo.gov">data.mo.gov</a></li>
-    <li><a href="http://data.kcmo.gov">data.kcmo.gov</a></li>
-  </ul>
-  <h3>Convert the Data to GeoJSON</h3>
-  <ul>
-    <li><a href="http://geojson.org/geojson-spec.html">http://geojson.org/geojson-spec.html</a></li>
-    <li><a href="http://converter.mygeodata.eu/vector">http://converter.mygeodata.eu/vector</a></li>
-  </ul>
-  <h3>D3</h3>
-  <ul>
-    <li>
-      Create a projection
-      <pre>var projection = d3.geo.mercator()
-        .translate([w*10.25, h*5])
-        .scale([3000]);</pre>
-    </li>
-    <li>
-      Create a geo path generator.
-      <pre>var path = d3.geo.path().projection(projection);</pre>
-    </li>
-    <li>
-      Add color ( Create a chloropleth ) or plot points.
-      <pre>var colorScale = d3.scale.linear()
-        .range(['#fef0d9','#fdcc8a','#fc8d59','#e34a33','#b30000']);</pre>
-    </li>
-  </ul>
-  <h3>Resources</h3>
-  <ul>
-    <li><a href="http://colorbrewer2.org">Color Brewer</a></li>
-    <li><a href="http://exposedata.com/talk/d3-geo">http://exposedata.com/talk/d3-geo</a></li>
-    <li><a href="http://halftone.co/projects/temperatures/">http://halftone.co/projects/temperatures/</a></li>
-  </ul>
 
+  <h3>Get the Data</h3>
+  <div class="collapsible">
+    <p>Many sites offer GeoJSON or other geo data formats.</p>
+    <ul>
+      <li>
+        <a href="http://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html">
+        http://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html</a>
+      </li>
+      <li><a href="http://data.mo.gov">data.mo.gov</a></li>
+      <li><a href="http://data.kcmo.gov">data.kcmo.gov</a></li>
+    </ul>
+  </div>
+
+  <h3>Convert the Data to GeoJSON</h3>
+  <div class="collapsible">
+    <p>D3 uses GeoJSON.   If the data is not in GeoJSON format, then convert it.</p>
+    <ul>
+      <li><a href="http://geojson.org/geojson-spec.html">http://geojson.org/geojson-spec.html</a></li>
+      <li><a href="http://converter.mygeodata.eu/vector">http://converter.mygeodata.eu/vector</a></li>
+    </ul>
+  </div>
+
+  <h3>D3 Geo Basics</h3>
+  <div class="collapsible">
+    <p></p>
+    <ul>
+      <li>
+        Create a projection
+        <pre>var projection = d3.geo.mercator()
+          .translate([w*10.25, h*5])
+          .scale([3000]);</pre>
+      </li>
+      <li>
+        Create a geo path generator.
+        <pre>var path = d3.geo.path().projection(projection);</pre>
+      </li>
+      <li>
+        Add color ( Create a chloropleth ) or plot points.
+        <pre>var colorScale = d3.scale.linear()
+          .range(['#fef0d9','#fdcc8a','#fc8d59','#e34a33','#b30000']);</pre>
+      </li>
+    </ul>
+  </div>
 
 </article>
 <article class="slide slide-list">
@@ -662,7 +702,7 @@ circle.exit().remove();</pre>
   var g = d3.select('svg.geo')
     .attr({ width: w, height: h }).append('g');
 // Get the data
-  d3.json('data/mo-counties.geo.json', function(json) {
+  d3.json('data/mo-counties.geo.json', function(error, json) {
     var is1990 = true;
     var max1990 = d3.max(json.features, function(d) {
       return d.properties.pop_1990;
@@ -833,36 +873,53 @@ circle.exit().remove();</pre>
   <h2>References</h2>
 
   <h3>D3 References, Articles and Tools</h3>
-  <ul>
-    <li><a href="https://github.com/kcjmowright/d3-presentation">https://github.com/kcjmowright/d3-presentation - Source to these slides</a></li>
-    <li><a href="http://d3js.org" target="_blank">d3js.org</a></li>
-    <li><a href="http://bl.ocks.org" target="_blank">bl.ocks.org</a> - Mike Bostock</li>
-    <li><a href="http://bost.ocks.org/mike/chart" target="_blank">Mike Bostock's reusable chart pattern</a></li>
-    <li><a href="http://bost.ocks.org/mike/join/" target="_blank">Thinking in Joins</a></li>
-    <li><a href="http://tributary.io" target="_blank">tributary.io</a> - live editing for d3 and visualization similar to plunker, jsfiddle, binjs etc.</li>
-    <li><a href="http://www.coppelia.io/2014/07/an-a-to-z-of-extra-features-for-the-d3-force-layout/" target="_blank">AN A TO Z OF EXTRA FEATURES FOR THE D3 FORCE LAYOUT/</a></li>
-  </ul>
+  <div class="collapsible">
+    <ul>
+      <li><a href="https://github.com/kcjmowright/d3-presentation">https://github.com/kcjmowright/d3-presentation - Source to these slides</a></li>
+      <li><a href="http://d3js.org" target="_blank">d3js.org</a></li>
+      <li><a href="http://bl.ocks.org" target="_blank">bl.ocks.org</a> - Mike Bostock</li>
+      <li><a href="http://bost.ocks.org/mike/chart" target="_blank">Mike Bostock's reusable chart pattern</a></li>
+      <li><a href="http://bost.ocks.org/mike/join/" target="_blank">Thinking in Joins</a></li>
+      <li><a href="http://tributary.io" target="_blank">tributary.io</a> - live editing for d3 and visualization similar to plunker, jsfiddle, binjs etc.</li>
+      <li><a href="http://www.coppelia.io/2014/07/an-a-to-z-of-extra-features-for-the-d3-force-layout/" target="_blank">AN A TO Z OF EXTRA FEATURES FOR THE D3 FORCE LAYOUT/</a></li>
+    </ul>
+  </div>
 
   <h3>D3 Examples</h3>
-  <ul>
-    <li><a href="http://nvd3.org/ghpages/examples.html" target="_blank">NVD</a></li>
-    <li><a href="http://bost.ocks.org">Blocks - D3 Examples with code</a></li>
-    <li><a href="http://bost.ocks.org/mike/example" target="_blank">Mike's Blocks Examples</a></li>
-    <li><a href="http://bost.ocks.org/jasondavies" target="_blank">Jason Davies Blocks</a></li>
-    <li><a href="http://exposedata.com">Kai Chang</a></li>
-    <li><a href="http://biovisualize.github.io">D3 Visualization Gallery</a></li>
-  </ul>
+  <div class="collapsible">
+    <ul>
+      <li><a href="http://nvd3.org/ghpages/examples.html" target="_blank">NVD</a></li>
+      <li><a href="http://bost.ocks.org">Blocks - D3 Examples with code</a></li>
+      <li><a href="http://bost.ocks.org/mike/example" target="_blank">Mike's Blocks Examples</a></li>
+      <li><a href="http://bost.ocks.org/jasondavies" target="_blank">Jason Davies Blocks</a></li>
+      <li><a href="http://exposedata.com">Kai Chang</a></li>
+      <li><a href="http://biovisualize.github.io">D3 Visualization Gallery</a></li>
+    </ul>
+  </div>
+
+  <h3>Geo Resources</h3>
+  <div class="collapsible">
+    <ul>
+      <li><a href="http://colorbrewer2.org">Color Brewer</a></li>
+      <li><a href="http://exposedata.com/talk/d3-geo">http://exposedata.com/talk/d3-geo</a></li>
+      <li><a href="http://halftone.co/projects/temperatures/">http://halftone.co/projects/temperatures/</a></li>
+    </ul>
+  </div>
 
   <h3>D3 Tutorials</h3>
-  <ul>
-    <li><a href="http://enjalot.github.io/intro-d3/frontendmasters" target="_blank">Ian Johnsons - D3 Tutorial References</a></li>
-  </ul>
+  <div class="collapsible">
+    <ul>
+      <li><a href="http://enjalot.github.io/intro-d3/frontendmasters" target="_blank">Ian Johnsons - D3 Tutorial References</a></li>
+    </ul>
+  </div>
 
   <h3>SVG References</h3>
-  <ul>
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element" target="_blank">MDN SVG elements</a></li>
-    <li><a href="http://www.w3.org/TR/SVG/" target="_blank">W3C SVG Reference</a></li>
-  </ul>
+  <div class="collapsible">
+    <ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element" target="_blank">MDN SVG elements</a></li>
+      <li><a href="http://www.w3.org/TR/SVG/" target="_blank">W3C SVG Reference</a></li>
+    </ul>
+  </div>
 </article>
 
 
@@ -871,6 +928,13 @@ circle.exit().remove();</pre>
 <script>
   $(function() {
     $.deck('.slide');
+    $('h3').css('cursor','pointer').bind('click', function() {
+      var $target = $(this);
+      var $p = $target.next();
+
+      $p.toggle('hide');
+    });
+
   });
 </script>
 </body>
