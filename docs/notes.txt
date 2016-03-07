@@ -1,0 +1,157 @@
+  What we are going to talk about,
+    talk about it
+      review what we talked about.
+
+D3 is
+  Data Driven Documents
+  Library written by Mike Bostock
+  Declaratively manipulate DOM
+
+
+
+
+SVG/HTML Markup
+
+SVG coordinate system 0,0 in upper left, basically the y or vertical is flipped compared to the traditional mathematical cartesian coordinate system.
+Many element attributes are also style attributes. Best practice is to use CSS.
+
+  Shapes
+    Rect
+    Circle
+    Ellipse
+    Paths
+    Grouping
+    Use
+  Filters
+    Blenders
+    Blurs
+    Merging
+    Offsetting
+  Gradients
+    Linear
+    Radial
+
+Selections and DOM Manipulation
+
+  Selections
+    Supports all CSS selectors. Creates jQuery like selection. Uses Sizzle.
+
+  DOM Manipulation
+    Similar to jQuery
+    append, insert, remove
+    attribute one at a time or provide a map
+
+Scales, Domains and Ranges
+  Data needs to be transformed to fit within the given real estate or mapped to other values.  Define the domain and range of a data set.
+
+  Scales
+
+    linear - continuous input domain to a continuous output range
+    ordinal - a discrete domain, such as a set of names or categories
+    pow - exponential transform
+    log - logarithmic transform
+    time - time transform
+    color Scales
+
+  Domain
+    Array of min and max
+
+  Range
+    output range
+
+Joining Data to DOM Update, Enter, Exit
+  Data Method
+  <p>Joins the specified array of data with the current selection.</p>
+  Enter
+  <p>Data without elements is bound to newly created elements.</p>
+  Exit
+  <p>Elements without data are selected and usually removed.</p>
+
+    var height = 250, width = 500;
+    var svg = d3.select("svg.scatter-plot");
+    var data = [ 301, 20, 30, 40, 14, 7, 80, 73, 55, 93, 234, 2340, 303];
+
+    var g = svg.append('g').attr({ transform: "translate(113,17) scale(0.724598784)"});
+
+    render();
+    setInterval(function() {
+      data = [];
+      for(var i = (Math.floor(Math.random() * 20));--i>=0;) {
+        data.push(val());
+      }
+      render();
+    }, 1000);
+
+    function val() {
+       return Math.floor(Math.random() * 100);
+    }
+
+    function render() {
+      var scale = d3.scale.linear().domain(d3.extent(data)).range([0, height]);
+         var circles = g.selectAll('circle')
+      .data(data);
+    circles.enter()
+      .append('circle')
+      .attr({
+        cx: function(d, i) { return i * (width/data.length); },
+        cy: function(d) { return height - scale(d); },
+        r: 10,
+        fill: '#2da0fe'
+      });
+      circles.exit().remove();
+    }
+
+Events
+
+    .on('click', function(d) {
+      d3.select(this).attr('fill', function(){
+        return '#ff5500';
+      });
+    });
+
+Axis
+
+
+Brush
+
+Putting it All Together
+
+
+  Reusable
+
+
+  Easing
+    linear - the identity function, t.
+    poly(k) - raises t to the specified power k (e.g., 3).
+    quad - equivalent to poly(2).
+    cubic - equivalent to poly(3).
+    sin - applies the trigonometric function sin.
+    exp - raises 2 to a power based on t.
+    circle - the quarter circle.
+    elastic(a, p) - simulates an elastic band; may extend slightly beyond 0 and 1.
+    back(s) - simulates backing into a parking space.
+    bounce - simulates a bouncy collision.
+
+Arcs
+
+Layouts
+  Force Layout
+
+    Basics
+
+    Arrows
+
+    Collision Detection
+
+    Labels
+
+    Pinning
+
+Data Sources
+
+  D3 is able to access a variety of AJAX type data sources.
+  There are many publicly available and free data sources.
+
+Geo
+
+References
