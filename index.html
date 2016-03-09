@@ -192,7 +192,6 @@
 <article class="slide slide-list">
   <h2>Scales, Domains and Ranges</h2>
 
-  <h3>Scales</h3>
   <div class="collapsible">
     <!-- p>Data needs to be transformed to fit within the given real estate or mapped to other values.  Define the domain and range of a data set.</p -->
     <ul>
@@ -207,8 +206,8 @@
   <textarea class="coder-editor coder-editor-instant">
 <svg class="svg-path-sample"></svg>
 <script>
-  var width = 500, height = 500;
-  var data = [150, 125, 200, 400];
+  var width = 500, height = 400;
+  var data = [0, 80, 20, 70, 80, 60, 20];
   var svg = d3.select('.svg-path-sample')
     .append('g')
     .attr('transform', 'translate(0, 0) scale(1)');
@@ -243,51 +242,31 @@
 <article class="slide slide-list">
 
   <h2>Joining Data and DOM</h2>
-
   <div>
-    <div style="width:32%; height: 125px; float: left">
-      <h3>The <i>data</i> Method</h3>
-      <pre>var c = svg.selectAll("circle")
-        .data(data);</pre>
-    </div>
-
-    <div style="width:32%; height: 125px; float: left">
-      <h3>The <i>enter</i> Method</h3>
-      <pre>c.enter()
-        .append("circle");</pre>
-    </div>
-
-    <div style="width:32%; height: 125px; float: left">
-      <h3>The <i>exit</i> Method</h3>
-      <pre>c.exit()
-        .remove();</pre>
-    </div>
-  </div>
-  <div>
-    <div style="margin: 0 auto; width: 250px">
-      <svg width="250" height="120">
-        <g transform="translate(10,10) scale(0.5)">
+    <div style="margin: 0 auto; width: 460px;">
+      <svg width="460" height="250">
+        <g transform="translate(20,10) scale(1.2)">
           <circle cx="100" cy="100"
                   r="100"
                   style="fill: none; stroke: #000"/>
           <circle cx="200" cy="100"
                   r="100"
                   style="fill: none; stroke: #F00"/>
-          <text x="25" y="25">Data</text>
+          <text x="0" y="25">Data</text>
           <text x="25" y="100">Enter</text>
           <text x="125" y="100">Update</text>
           <text x="250" y="100">Exit</text>
-          <text x="250" y="25">DOM</text>
+          <text x="270" y="25" style="fill: none; stroke: #F00">DOM</text>
         </g>
       </svg>
     </div>
   </div>
 
   <textarea class="coder-editor coder-editor-instant">
-<svg class="scatter-plot"></svg>
+<svg class="join-example"></svg>
 <script>
   var height = 250, width = 500;
-  var svg = d3.select("svg.scatter-plot");
+  var svg = d3.select("svg.join-example");
   var data = [ 301, 20, 30, 40, 14, 7, 80, 73, 55, 93, 234, 2340, 303];
   var scale = d3.scale.linear().domain(d3.extent(data)).range([0, height]);
   var g = svg.append('g').attr({ transform: "translate(113,17) scale(0.724598784)"});
@@ -395,6 +374,50 @@
   });
 </script>
   </textarea>
+
+</article>
+
+
+<article class="slide slide-list">
+  <h2>Transitions</h2>
+
+  <h3>Timing</h3>
+  <h3>Easing</h3>
+  <div class="collapsable">
+    <ul>
+      <li>linear - the identity function, t.</li>
+      <li>poly(k) - raises t to the specified power k (e.g., 3).</li>
+      <li>quad - equivalent to poly(2).</li>
+      <li>cubic - equivalent to poly(3).</li>
+      <li>sin - applies the trigonometric function sin.</li>
+      <li>exp - raises 2 to a power based on t.</li>
+      <li>circle - the quarter circle.</li>
+      <li>elastic(a, p) - simulates an elastic band; may extend slightly beyond 0 and 1.</li>
+      <li>back(s) - simulates backing into a parking space.</li>
+      <li>bounce - simulates a bouncy collision.</li>
+    </ul>
+  </div>
+
+
+    <textarea class="coder-editor coder-editor-instant">
+<svg class="transitions"></svg>
+<script>
+  d3.select("svg.transitions").append("circle")
+    .attr({
+      cx: 100,
+      cy: 100,
+      r: 50,
+      fill: "#00FF00"
+    })
+    .on('click', function(d) {
+      d3.select(this).transition().duration(1000).ease('linear')
+        .attr({
+          fill:function(){ return '#ff5500';},
+          cx: 200
+        });
+    });
+</script>
+    </textarea>
 
 </article>
 
@@ -635,57 +658,118 @@
 </article -->
 
 <article class="slide slide-list">
+  <h2>Layouts</h2>
+
+  <ul>
+    <li><a href="https://github.com/mbostock/d3/wiki/Bundle-Layout">Bundle</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Chord-Layout">Chord</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Cluster-Layout">Cluster</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Force-Layout">Force</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Hierarchy-Layout">Hierarchy</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Histogram-Layout">Histogram</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Pack-Layout">Pack</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Partition-Layout">Partition</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Pie-Layout">Pie</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Stack-Layout">Stack</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Tree-Layout">Tree</a></li>
+    <li><a href="https://github.com/mbostock/d3/wiki/Treemap-Layout">Treemap</a></li>
+  </ul>
+
+</article>
+
+<article class="slide slide-list">
   <h2>Pie Layout and Arc Generator</h2>
   <textarea class="coder-editor coder-editor-instant">
 <svg class="pie-layout"></svg>
 <script>
-  d3.json('data/pie.json', function(error, pie){
-    var data = pie.data;
-    var width = 500, height = 500;
-    var radius = Math.min(width, height) / 2;
-    var svg = d3.select('svg')
-      .append('g')
-      .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
-    var color = d3.scale.ordinal()
-      .range(["#98abc5", "#8a89a6", "#d0743c", "#ff8c00"]);
-    var arc = d3.svg.arc()
-      .outerRadius(radius - 12)
-      .innerRadius(59);
-    var labelArc = d3.svg.arc()
-      .outerRadius(radius - 40)
-      .innerRadius(radius - 125);
-    var pie = d3.layout.pie()
-      .value(function(d) {
-        return d.value;
-      });
-    var g = svg.selectAll(".arc")
-      .data(pie(data))
-      .enter()
-      .append("g")
-      .attr({
-        'class': 'arc',
-        'stroke': '#ffffff'
-      });
+  (function() {
+    var chart = PieChart();
 
-    g.append('path')
-      .attr('d', arc)
-      .style('fill', function(d) {
-        return color(d.data.label);
-      });
-    g.append('text')
-      .attr("transform", function(d) {
-        return 'translate(' + labelArc.centroid(d) + ')';
-      })
-      .attr({
-        dy: '.35em',
-        fill: '#FFF',
-        stroke: '#FFF'
-      })
-      .style('font-family', 'Arial, sans-serif')
-      .text(function(d) {
-        return d.data.label;
-      });
-  });
+    chart.url('data/pie.json');
+    chart('svg.pie-layout');
+
+    function PieChart() {
+      var url;
+      var width = 500;
+      var height = 500;
+
+      function chart(element) {
+        d3.json('data/pie.json', function(error, pie){
+          var data = pie.data;
+          var radius = Math.min(width, height) / 2;
+          var svg = d3.select(element)
+            .append('g')
+            .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
+          var color = d3.scale.ordinal()
+            .range(["#98abc5", "#8a89a6", "#d0743c", "#ff8c00"]);
+          var arc = d3.svg.arc()
+            .outerRadius(radius - 12)
+            .innerRadius(59);
+          var labelArc = d3.svg.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 125);
+          var pie = d3.layout.pie()
+            .value(function(d) {
+              return d.value;
+            });
+          var g = svg.selectAll(".arc")
+            .data(pie(data))
+            .enter()
+            .append("g")
+            .attr({
+              'class': 'arc',
+              'stroke': '#ffffff'
+            });
+
+          g.append('path')
+            .attr('d', arc)
+            .style('fill', function(d) {
+              return color(d.data.label);
+            });
+          g.append('text')
+            .attr("transform", function(d) {
+              return 'translate(' + labelArc.centroid(d) + ')';
+            })
+            .attr({
+              dy: '.35em',
+              fill: '#FFF',
+              stroke: '#FFF'
+            })
+            .style('font-family', 'Arial, sans-serif')
+            .text(function(d) {
+              return d.data.label;
+            });
+        });
+      }
+
+      chart.url = function(value) {
+        if(!value) {
+          return url;
+        }
+        url = value;
+        return chart;
+      };
+
+      chart.width = function(value) {
+        if(!value) {
+          return width;
+        }
+        width = value;
+        return chart;
+      };
+
+      chart.height = function(value) {
+        if(!value) {
+          return height;
+        }
+        height = value;
+        return chart;
+      };
+
+      return chart;
+    }
+
+  })();
 </script>
   </textarea>
 
@@ -696,53 +780,107 @@
   <textarea class="coder-editor coder-editor-instant">
 <svg class="force"></svg>
 <script>
-  var width = 500, height = 500;
-  var color = d3.scale.category20();
-  var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
-    .size([width, height]);
-  var svg = d3.select("svg.force");
+  (function() {
+    var chart = ForceViz();
 
-  d3.json("data/miserables.json", function(error, graph) {
+    chart.url("data/miserables.json");
+    chart("svg.force");
 
-    var link = svg.selectAll(".link")
-      .data(graph.links)
-      .enter()
-      .append("line")
-      .attr({
-        "class": "link",
-        "stroke-width": function(d) {
-          return Math.sqrt(d.value);
+    function ForceViz() {
+      var url;
+      var width = 500;
+      var height = 500;
+      var color = d3.scale.category20();
+      var alpha = 0.1;
+      var charge = -120;
+      var linkDistance = 30;
+
+      function chart(element) {
+
+        var force = d3.layout.force()
+          .alpha(alpha)
+          .charge(charge)
+          .linkDistance(linkDistance)
+          .size([width, height]);
+        var svg = d3.select(element);
+
+        d3.json(url, function(error, graph) {
+
+          var link = svg.selectAll(".link")
+            .data(graph.links)
+            .enter()
+            .append("line")
+            .attr({
+              "class": "link",
+              "stroke-width": function(d) {
+                return Math.sqrt(d.value);
+              }
+            });
+          var node = svg.selectAll(".node")
+            .data(graph.nodes)
+            .enter()
+            .append("circle")
+            .attr({
+              "class": "node",
+              "r": 10,
+              "fill": function(d) { return color(d.group); }
+            })
+            .call(force.drag);
+
+          node.append("title")
+            .text(function(d) { return d.name; });
+
+          force
+            .nodes(graph.nodes)
+            .links(graph.links)
+            .start()
+            .on("tick", function() {
+              link.attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+              node.attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; });
+            });
+        });
+      }
+
+      chart.url = function(value) {
+        if(!value) {
+          return url;
         }
-      });
-    var node = svg.selectAll(".node")
-      .data(graph.nodes)
-      .enter()
-      .append("circle")
-      .attr({
-        "class": "node",
-        "r": 10,
-        "fill": function(d) { return color(d.group); }
-      })
-      .call(force.drag);
+        url = value;
+        return chart;
+      };
 
-    node.append("title")
-      .text(function(d) { return d.name; });
+      chart.charge = function(value) {
+        if(!value) {
+          return charge;
+        }
+        charge = value;
+        return chart;
+      };
 
-    force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .start()
-      .on("tick", function() {
-        link.attr("x1", function(d) { return d.source.x; })
-          .attr("y1", function(d) { return d.source.y; })
-          .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
-        node.attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
-      });
-  });
+      chart.linkDistance = function(value) {
+        if(!value) {
+          return linkDistance;
+        }
+        linkDistance = value;
+        return chart;
+      };
+
+      chart.alpha = function(value) {
+        if(!value) {
+          return alpha;
+        }
+        alpha = value;
+        return chart;
+      };
+
+      return chart;
+    };
+  })();
+
 </script>
 <style>
   .node {
@@ -795,7 +933,7 @@
 
   <h3>Get the Data</h3>
   <div class="collapsible">
-    <p>Many sites offer GeoJSON or other geo data formats.</p>
+    <!-- p>Many sites offer GeoJSON or other geo data formats.</p -->
     <ul>
       <li>
         <a href="http://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html">
@@ -808,7 +946,7 @@
 
   <h3>Convert the Data to GeoJSON</h3>
   <div class="collapsible">
-    <p>D3 uses GeoJSON.   If the data is not in GeoJSON format, then convert it.</p>
+    <!-- p>D3 uses GeoJSON.   If the data is not in GeoJSON format, then convert it.</p -->
     <ul>
       <li><a href="http://geojson.org/geojson-spec.html">http://geojson.org/geojson-spec.html</a></li>
       <li><a href="http://converter.mygeodata.eu/vector">http://converter.mygeodata.eu/vector</a></li>
@@ -845,59 +983,86 @@
 <span class="mopoptitle"></span>
 <svg class="geo"></svg>
 <script>
-  var w = 500;
-  var h = 500;
+  (function() {
+    var chart = GeoViz();
+
+    chart.url("data/mo-counties.geo.json");
+    chart("svg.geo");
+
+    function GeoViz() {
+      var url;
+      var width = 500;
+      var height = 500;
+      var dataKeys = {
+        "pop_1990": "MO Population 1990",
+        "pop_2000": "MO Population 2000"
+      };
+      var dataKey = "pop_1990";
+      var translateX = width*10.25;
+      var translateY = height*5;
+      var scale = 3000;
+
+      function chart(element) {
 // Projection
-  var projection = d3.geo.mercator()
-    .translate([w*10.25, h*5])
-    .scale([3000]);
+        var projection = d3.geo.mercator()
+          .translate([translateX, translateY])
+          .scale([scale]);
 // Geo Path Generator
-  var path = d3.geo.path().projection(projection);
-  var g = d3.select('svg.geo')
-    .attr({ width: w, height: h }).append('g');
+        var path = d3.geo.path().projection(projection);
+        var g = d3.select(element)
+          .attr({ width: width, height: height }).append('g');
 // Get the data
-  d3.json('data/mo-counties.geo.json', function(error, json) {
-    var is1990 = true;
-    var max1990 = d3.max(json.features, function(d) {
-      return d.properties.pop_1990;
-    });
-    var max2000 = d3.max(json.features, function(d) {
-      return d.properties.pop_2000;
-    });
+        d3.json(url, function(error, json) {
+          max = d3.max(json.features, function(d) {
+            return d.properties[dataKey];
+          });
 // colorbrewer2.org Chloropleth
-    var colorScale = d3.scale.linear()
-      .range(['#fef0d9','#fdcc8a','#fc8d59','#e34a33','#b30000'])
-      .domain([0, max1990]);
-    var mopoptitle = d3.selectAll('.mopoptitle').text('MO Population 1990');
-    var map = g.selectAll('path')
-      .data(json.features)
-      .enter()
-      .append('path')
-      .attr('d', path)
-      .style('fill', fill1990)
-      .on('click', function() {
-        is1990 = !is1990;
-        if(is1990) {
-          colorScale.domain([0, max1990]);
-          map.transition().style('fill', fill1990);
-          mopoptitle.transition().text('MO Population 1990');
-        } else {
-          colorScale.domain([0, max2000]);
-          map.transition().style('fill', fill2000);
-          mopoptitle.transition().text('MO Population 2000');
+          var colorScale = d3.scale.linear()
+            .range(['#fef0d9','#fdcc8a','#fc8d59','#e34a33','#b30000'])
+            .domain([0, max]);
+          var mopoptitle = d3.selectAll('.mopoptitle').text(dataKeys[dataKey]);
+          var map = g.selectAll('path')
+            .data(json.features)
+            .enter()
+            .append('path')
+            .attr('d', path)
+            .style('fill', fill)
+            .on('click', nextKey);
+
+          function fill(d) {
+            var value = d.properties[dataKey];
+            return value ? colorScale(value) : '#666';
+          }
+
+          function nextKey() {
+            var keys = Object.getOwnPropertyNames(dataKeys);
+            var idx = keys.findIndex(function(d) {
+              return d === dataKey;
+            });
+
+            dataKey = keys[(++idx === keys.length) ? 0 : idx];
+            max = d3.max(json.features, function(d) {
+              return d.properties[dataKey];
+            });
+            colorScale.domain([0, max]);
+            map.transition().style('fill', fill);
+            mopoptitle.transition().text(dataKeys[dataKey]);
+          }
+        });
+      }
+
+      chart.url = function(value) {
+        if(!value) {
+          return url;
         }
-      });
+        url = value;
+        return chart;
+      };
 
-    function fill1990(d) {
-      var value = d.properties.pop_1990;
-      return value ? colorScale(value) : '#666';
+      return chart;
     }
 
-    function fill2000(d) {
-      var value = d.properties.pop_2000;
-      return value ? colorScale(value) : '#666';
-    }
-  });
+  })();
 </script>
   </textarea>
 

@@ -1,13 +1,13 @@
-  What we are going to talk about,
-    talk about it
-      review what we talked about.
+  Introduction
+    Who am I?  Where do I work?  What do I do?
 
-D3 is
-  Data Driven Documents
-  Library written by Mike Bostock
-  Declaratively manipulate DOM
+  We are going to talk about...
+    Know your audience: Show of hands, who is familiar with D3?
 
-
+    D3 is
+      Data Driven Documents
+      Library written by Mike Bostock
+      Declaratively manipulate DOM
 
 
 SVG/HTML Markup
@@ -68,7 +68,7 @@ Joining Data to DOM Update, Enter, Exit
   <p>Elements without data are selected and usually removed.</p>
 
     var height = 250, width = 500;
-    var svg = d3.select("svg.scatter-plot");
+    var svg = d3.select("svg.join-example");
     var data = [ 301, 20, 30, 40, 14, 7, 80, 73, 55, 93, 234, 2340, 303];
 
     var g = svg.append('g').attr({ transform: "translate(113,17) scale(0.724598784)"});
@@ -88,9 +88,8 @@ Joining Data to DOM Update, Enter, Exit
 
     function render() {
       var scale = d3.scale.linear().domain(d3.extent(data)).range([0, height]);
-         var circles = g.selectAll('circle')
-      .data(data);
-    circles.enter()
+      var circles = g.selectAll('circle').data(data);
+      circles.enter()
       .append('circle')
       .attr({
         cx: function(d, i) { return i * (width/data.length); },
@@ -114,11 +113,7 @@ Axis
 
 Brush
 
-Putting it All Together
-
-
-  Reusable
-
+Transitions
 
   Easing
     linear - the identity function, t.
@@ -132,9 +127,27 @@ Putting it All Together
     back(s) - simulates backing into a parking space.
     bounce - simulates a bouncy collision.
 
-Arcs
+
+Putting it All Together
+
+
+  Reusable chart pattern
+
+
+
 
 Layouts
+
+  Histogram
+
+  Stack
+
+  Tree
+
+  TreeMap
+
+  Pie
+
   Force Layout
 
     Basics
@@ -154,4 +167,33 @@ Data Sources
 
 Geo
 
+  Get the Data
+    Many sites offer GeoJSON or other geo data formats.
+
+  Convert the Data
+    D3 uses GeoJSON.  If the data is not in GeoJSON format, then convert it.  Many free programs and public sites available.
+
+  D3 Geo Basics
+    Create a projection
+      Projects forward from spherical coordinates (in degrees) to Cartesian coordinates (in pixels).
+
+      d3.geo.albersUsa - a composite Albers projection for the United States.
+      d3.geo.azimuthalEqualArea - the azimuthal equal-area projection.
+      d3.geo.azimuthalEquidistant - the azimuthal equidistant projection.
+      d3.geo.conicConformal - the conic conformal projection.
+      d3.geo.conicEquidistant - the conic equidistant projection.
+      d3.geo.conicEqualArea the conic equal-area (a.k.a. Albers) projection.
+      d3.geo.equirectangular - the equirectangular (plate carreé) projection.
+      d3.geo.gnomonic - the gnomonic projection.
+      d3.geo.mercator - the spherical Mercator projection.
+      d3.geo.orthographic - the azimuthal orthographic projection.
+      d3.geo.stereographic - the azimuthal stereographic projection.
+
+    Create a geo path generator.
+
+    Add color ( Create a chloropleth ) or plot points.
+
 References
+
+
+Review what we talked about.
