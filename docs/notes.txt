@@ -1,4 +1,6 @@
-  Introduction
+*****************************************************************************************************************************************
+Introduction
+
     Who am I?  Where do I work?  What do I do?
 
   We are going to talk about...
@@ -7,30 +9,38 @@
     D3 is
       Data Driven Documents
       Library written by Mike Bostock
-      Declaratively manipulate DOM
+      Some might say its a charting library, but its much more than that.
+      Declaratively manipulate DOM.
+      Chainable method calls.  Similar to function programming streams.
 
 
+*****************************************************************************************************************************************
 SVG/HTML Markup
 
-SVG coordinate system 0,0 in upper left, basically the y or vertical is flipped compared to the traditional mathematical cartesian coordinate system.
-Many element attributes are also style attributes. Best practice is to use CSS.
+  Although D3 can be used with any browser markup, it is most commonly used with SVG.  Can even be used with HTML 5 canvas.
+  DOM has upper limits on the number of elements within a browser.
+  SVG coordinate system has the origin (0,0) in upper left, basically the y or vertical is flipped compared
+  to the traditional mathematical cartesian coordinate system.
+  Many element attributes are also style attributes. Best practice is to use CSS.
 
-  Shapes
-    Rect
-    Circle
-    Ellipse
-    Paths
-    Grouping
-    Use
-  Filters
-    Blenders
-    Blurs
-    Merging
-    Offsetting
-  Gradients
-    Linear
-    Radial
+    Shapes
+      Rect
+      Circle
+      Ellipse
+      Paths
+      Grouping
+      Use
+    Filters
+      Blenders
+      Blurs
+      Merging
+      Offsetting
+    Gradients
+      Linear
+      Radial
 
+
+*****************************************************************************************************************************************
 Selections and DOM Manipulation
 
   Selections
@@ -41,24 +51,33 @@ Selections and DOM Manipulation
     append, insert, remove
     attribute one at a time or provide a map
 
+
+*****************************************************************************************************************************************
 Scales, Domains and Ranges
-  Data needs to be transformed to fit within the given real estate or mapped to other values.  Define the domain and range of a data set.
+  Data needs to be transformed to fit within the given real estate or mapped to other values.  Define the input domain and output range.
 
   Scales
 
     linear - continuous input domain to a continuous output range
-    ordinal - a discrete domain, such as a set of names or categories
+    ordinal - a discrete domain, such as a set of names or categories.  Doing things in order
     pow - exponential transform
     log - logarithmic transform
     time - time transform
-    color Scales
+    color - scales
 
   Domain
     Array of min and max
+      d3.range(data.length)
+      d3.extent
 
   Range
-    output range
+    output range; an array of values to return
 
+    output range with padding.
+            .rangeBands([15, width], 0.5);
+
+
+*****************************************************************************************************************************************
 Joining Data to DOM Update, Enter, Exit
   Data Method
   <p>Joins the specified array of data with the current selection.</p>
@@ -88,7 +107,7 @@ Joining Data to DOM Update, Enter, Exit
 
     function render() {
       var scale = d3.scale.linear().domain(d3.extent(data)).range([0, height]);
-      var circles = g.selectAll('circle').data(data);
+      var circles = g.selectAll('circle').data(data, function(d){ return d; });
       circles.enter()
       .append('circle')
       .attr({
@@ -100,6 +119,8 @@ Joining Data to DOM Update, Enter, Exit
       circles.exit().remove();
     }
 
+
+*****************************************************************************************************************************************
 Events
 
     .on('click', function(d) {
@@ -108,12 +129,23 @@ Events
       });
     });
 
+
+*****************************************************************************************************************************************
 Axis
+  Methods to create x or y axes
 
 
+*****************************************************************************************************************************************
 Brush
+  UI Control used to adjust the extent of data ranges.  Similar to what is seen on google finance.
 
+
+*****************************************************************************************************************************************
 Transitions
+
+  Timing
+    Delay
+    Duration
 
   Easing
     linear - the identity function, t.
@@ -128,15 +160,18 @@ Transitions
     bounce - simulates a bouncy collision.
 
 
+*****************************************************************************************************************************************
 Putting it All Together
 
-
   Reusable chart pattern
+    Encapsulating your visualization
+    Getter/Setter methods.
+    Chainable.
 
 
-
-
+*****************************************************************************************************************************************
 Layouts
+  Many different built-in layouts
 
   Histogram
 
@@ -147,10 +182,18 @@ Layouts
   TreeMap
 
   Pie
+    Used with the arc generator.
 
   Force Layout
 
     Basics
+      Nodes & Links
+      Tick
+
+      Charge
+      Gravity
+      Link Distance
+      Alpha
 
     Arrows
 
@@ -160,11 +203,15 @@ Layouts
 
     Pinning
 
+
+*****************************************************************************************************************************************
 Data Sources
 
   D3 is able to access a variety of AJAX type data sources.
   There are many publicly available and free data sources.
 
+
+*****************************************************************************************************************************************
 Geo
 
   Get the Data
@@ -193,7 +240,8 @@ Geo
 
     Add color ( Create a chloropleth ) or plot points.
 
+*****************************************************************************************************************************************
 References
 
-
+*****************************************************************************************************************************************
 Review what we talked about.
